@@ -70,7 +70,10 @@ jobs:
         
      - name: Build kernel
        run: |
-        cd kernel_workspace
+        cd kernel_workspace/kernel_platform/msm-kernel
+        git clone https://github.com/qinhuaiqin/lxc-docker-support-for-android utils
+        bash utils/lxc-patch.sh
+        cd .. && cd ..
         ./kernel_platform/oplus/build/oplus_build_kernel.sh ${{ github.event.inputs.CPUD }} gki
 
      - name: Make AnyKernel3
